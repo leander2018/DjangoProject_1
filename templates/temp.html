@@ -1,0 +1,84 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<!--{%autoescape off%}-->
+<!--{{s}}-->
+<!--{%endautoescape%}-->
+
+<!--turf_add-->
+<!--<form method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <input type="text" placeholder="turf owner's name" name="oname" required><br>-->
+<!--        <input type="text" placeholder="your turf name" name="tname" required><br>-->
+<!--        <input type="text" placeholder="address" name="addr" required><br>-->
+<!--        <input type="text" placeholder="Sports available" name="sports" required><br>-->
+<!--        <input type="text" placeholder="your mobile number" name="mob_no"><br>-->
+<!--    <input type="submit" class="btn btn-success">-->
+<!--</form>-->
+
+
+<!--turf_view-->
+<!--<form method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <select name="place">-->
+<!--        <option value="All">All</option>-->
+<!--        <option value="kannur">Kannur</option>-->
+<!--        <option value="Kozhikode">Kozhikode</option>-->
+<!--    </select>-->
+<!--    <input type="submit">-->
+<!--</form><br><br>-->
+
+
+<!--&lt;!&ndash;<div class="row" >&ndash;&gt;-->
+<!--&lt;!&ndash;    {%for i in list%}&ndash;&gt;-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <img src="{{i.icon.url}}" alt="image_icon" width="200" height="200">&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>{{i.turf_name}}<br>{{i.address}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;{%endfor%}&ndash;&gt;-->
+<!--&lt;!&ndash;</div><br>&ndash;&gt;-->
+<!--{%for i in list%}-->
+<!--<div class="container">-->
+<!--    <div class="row align-items-center h-100">-->
+<!--        <div class="col-sm-5 col-md-3 col-lg-2">-->
+<!--            <div class="icon" >-->
+<!--                <a href="">-->
+<!--                    <img style="border-radius:50%;" src="{{i.icon.url}}" class="img-fluid"/>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-sm-7 col-md-3 col-lg-3">-->
+<!--            <div>-->
+<!--                <h2><a href="">{{i.turf_name}}</a></h2>-->
+<!--                <h4>{{i.address}}</h2></h4>-->
+<!--                <h4></h4>-->
+<!--                <h4><a href="tel:" target="_blank"></a></h4>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-sm-5 col-md-4 col-lg-5">-->
+<!--            <div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-sm-7 col-md-2 col-lg-2">-->
+
+<!--            <div>-->
+<!--&lt;!&ndash;                <a class="btn d-md-none" href="" target="_blank">BOOK NOW</a>&ndash;&gt;-->
+<!--                <a class="btn btn-success" data-toggle="modal" data-target="#booking-option">BOOK NOW</a>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--{%endfor%}-->
+
+
+
+{%endblock%}

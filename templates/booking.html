@@ -1,0 +1,246 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/nav.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/sradio.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/listbox.css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/tablepop.css'%}" rel="stylesheet" type="text/css">
+
+    <style>#s1,#s2,#s3{font-size:40px;}h4,li,table{color:#050505;}
+    .navbar-custom{background-color:#222629}th{text-align:center}
+
+
+
+    </style>
+
+</head>
+
+
+<body >
+<!-- Navigation -->
+{%for i in s%}
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+        <!--     <a class="navbar-brand logo-image"><img src="{{i.icon.url}}" style="width:0.2px;height=0.2px;" class="pull-left"></a>-->
+        <a class="navbar-brand" href="#">{{i.turf_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:8000/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="togglePopup()" href="#"> Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="slider">
+
+    <ul>
+        <li id="no-js-slider-1" class="slide">
+            <img src="{{i.image1.url}}">
+            <a class="prev" href="#no-js-slider-3">prev</a>
+            <a class="next" href="#no-js-slider-2">next</a>
+        </li>
+        <li id="no-js-slider-2" class="slide">
+            <img src="{{i.image2.url}}">
+            <a class="prev" href="#no-js-slider-1">prev</a>
+            <a class="next" href="#no-js-slider-3">next</a>
+        </li>
+        <li id="no-js-slider-3" class="slide">
+            <img src="{{i.image3.url}}">
+            <a class="prev" href="#no-js-slider-2">prev</a>
+            <a class="next" href="#no-js-slider-1">next</a>
+        </li>
+
+    </ul>
+    {%endfor%}
+</div>
+
+
+
+
+    <form action="{%url 'turf_booking2'%}" method="post" style="padding: 1rem;" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <div class="container py-5">
+            <div class="card shadow mb-4">
+                <div class="card-body p-5">
+                    <ul class="list-group list-group-flush">
+
+
+                        <h4 class="mb-4">Facilities Available</h4>
+                        {%for i in f%}
+                        {%if i.f_count < 5%}
+                        <li class="list-group-item">{{i.f1}}</li>
+                        <li class="list-group-item">{{i.f2}}</li>
+
+                        <li class="list-group-item">{{i.f3}}</li>
+
+
+                        <li class="list-group-item"> {{i.f4}}</li>
+                        {%else%}
+                        <li class="list-group-item">{{i.f1}}</li>
+                        <li class="list-group-item">{{i.f2}}</li>
+                        <li class="list-group-item">{{i.f3}}</li>
+                        <li class="list-group-item"> {{i.f4}}</li>
+                        <li class="list-group-item">{{i.f5}}</li>
+                        <li class="list-group-item">{{i.f6}}</li>
+                        <li class="list-group-item">{{i.f7}}
+                        </li>
+                        {%endif%}
+                        {%endfor%}<br></ul>
+                    {%for i in s%}
+                    <h4 class="mb-4">Sports Available</h4>
+                    <ul class="list-unstyled">
+                        <!-- Unstyled list -->
+                        {%if i.s_count == 2 %}
+
+                        <li class="mb-2" id="s1"><label>
+                            <input type="radio" class="option-input radio" name="example" value="Football" required/>
+                            ⚽
+                        </label>
+                            <label id="s2">
+                                <input type="radio" class="option-input radio" name="example" value="Cricket" required/>
+                                🏏
+                            </label></li>
+                        {%elif i.s_count == 1 %}
+                        <li class="mb-2" id="s3"><label>
+                            <input type="radio" class="option-input radio" name="example" value="Football" required/>
+                            ⚽
+                        </label></li>
+                        {%else%}
+                        <p>nothing available at the moment</p>
+                        {%endif%}<br>
+
+                        <h4 class="mb-4">Schedule </h4>
+                        <li>Date       : <input type="date" name="b_date"  required ></li><br>
+                        <li>Start Time :<input type="time" name="start_time"  required></li><br>
+                        <li>End Time   : <input type="time" name="end_time"  required></li>
+                        {%for i in s%}
+                        <li><input type="hidden" name="t_name" value="{{i.turf_name}}"></li>
+                        {%endfor%}
+<!--                        <li> START TIME :<input type="number" min="5" max="23" placeholder="HH" name="HH1"> :-->
+<!--                            <input type="number"-->
+<!--                                   name="MM1"-->
+<!--                                   min="00"-->
+<!--                                   max="30"-->
+<!--                                   step="30"-->
+<!--                                   placeholder="MM"></li>-->
+<!--                        <br>-->
+<!--                        <li>END TIME :<input type="number" min="0" max="23" name="HH2" placeholder="HH"> : <input-->
+<!--                                type="number"-->
+<!--                                name="MM2"-->
+<!--                                min="00"-->
+<!--                                max="30"-->
+<!--                                step="30"-->
+<!--                                placeholder="MM"></li>-->
+                        <li><br><input class=" btn" type="submit" value="BOOK" style="width:1000px;background-color:#83C232;color:white;"></li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <br><br>
+
+
+    </form>
+
+<!--popup-->
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="togglePopup()">×</div>
+<!--            <h4>Pricing</h4>-->
+<!--            football-->
+
+
+            <table border="1" >
+                <tr>
+                    <th colspan="3">Weekday</th>
+                <tr>
+                    {%for k in c%}
+                    {%if k.day == 'Weekday'%}
+                <tr>
+                    <td>{{k.timing}}</td>
+                    <td>{{k.price}}</td>
+                    <td>{{k.s_type}}</td>
+                <tr>
+                    {%endif%}
+                    {%endfor%}
+                <tr>
+                    <th colspan="3">Weekend</th>
+                <tr>
+                    {%for k in c%}
+                    {%if k.day == 'Weekend'%}
+                <tr>
+                    <td>{{k.timing}}</td>
+                    <td>{{k.price}}</td>
+                    <td>{{k.s_type}}</td>
+                <tr>
+                    {%endif%}
+                    {%endfor%}
+                <tr>
+                    <th colspan="3">Holiday</th>
+                <tr>
+                    {%for k in c%}
+                    {%if k.day == 'Holiday'%}
+                <tr>
+                    <td>{{k.timing}}</td>
+                    <td>{{k.price}}</td>
+                    <td>{{k.s_type}}</td>
+                <tr>
+                    {%endif%}
+                    {%endfor%}
+                {%for k in c%}
+                {%if k.day == 'Weekday,Weekend,Holiday'%}
+                <tr>
+                    <td>{{k.timing}}</td>
+                    <td>{{k.price}}</td>
+                    <td>{{k.s_type}}</td>
+                <tr>
+                {%endif%}
+                {%endfor%}
+            </table>
+
+        </div>
+    </div><div id="map" >
+    {%autoescape off%}
+    {{i.location}}
+    {%endautoescape%}
+
+    {%endfor%}
+</div>
+
+<!--js-->
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+        integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+
+
+<script src="{%static 'js/tablepop.js'%}"></script>
+
+</body>
+</html>

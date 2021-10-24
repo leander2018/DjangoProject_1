@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block body%}
+<form action="login" method="post" >
+    {%csrf_token%}
+    <input type="text" name="username" placeholder="username">
+    <br>
+    <input type="text" name="password" placeholder="password">
+    <input type="submit" value="login"><br>
+
+
+</form>
+
+{%for i in messages%}
+    <i>{{i}}...</i>
+{%endfor%}<br>
+
+Don't have an account?<a href="http://127.0.0.1:8000/accounts/register">click here</a>to register<br>
+or
+<a href="http://127.0.0.1:8000/">click here</a> to return home
+
+{%endblock%}

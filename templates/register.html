@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+
+
+{%block body%}
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+        <!--     <a class="navbar-brand logo-image"><img src="{{i.icon.url}}" style="width:0.2px;height=0.2px;" class="pull-left"></a>-->
+     <a class="navbar-brand" href="#">Registeration</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:8000/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container" style="margin:auto;width:40%;height:40%;border:2px solid black;border-radius:30px;padding:30px;">
+
+    <form action="register" method="post" >
+    {%csrf_token%}
+        <div class="form-group">
+            <input type="text" name="first_name" placeholder="firstname" class="form-control" required></div><br>
+     <div class="form-group">
+         <input type="text" name="last_name" placeholder="Lastname" class="form-control" required></div><br>
+     <div class="form-group">
+            <input type="text" name="Username" placeholder="Username" class="form-control" required></div><br>
+        <div class="form-group">
+         <input type="password" name="password1" placeholder="password" class="form-control" required></div><br>
+     <div class="form-group">
+         <input type="password" name="password2" placeholder="confirm password" class="form-control" required></div><br>
+     <div class="form-group">
+         <input type="text" name="Phone_no" placeholder="mobilenumber" class="form-control" required></div><br>
+     <div class="form-group">
+         <input type="email" name="email" placeholder="email(optional)" class="form-control" ></div><br>
+     <div class="form-group">
+         <input type="text" name="about" placeholder="about(optional)" class="form-control" ></div><br>
+     <div class="form-group">
+         <input type="radio" name="gender" value="male" id="male" required>  Male
+
+        <input type="radio" name="gender" value="female" id="female" required >  Female
+    </div><br>
+        <div class="form-group"><input type="submit" class="btn" style="background-color:#86C232;color:#fff;" ></div>
+    <br>
+    {% for i in messages %}
+    <i>{{i}}..!</i>
+    {% endfor %}
+
+
+
+</form>
+</div>
+
+{%endblock%}
